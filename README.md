@@ -1,1 +1,1107 @@
-# exhale-wellness
+[index.html](https://github.com/user-attachments/files/25873442/index.html)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exhale Wellness Spa & Tea Room — Saint Petersburg, FL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage: #7a8c6e;
+    --sage-light: #a3b394;
+    --sage-pale: #d6ddd0;
+    --cream: #f5f0e8;
+    --cream-deep: #ede5d5;
+    --warm-white: #faf8f4;
+    --earth: #8b7355;
+    --earth-dark: #5c4d38;
+    --charcoal: #2a2a27;
+    --mist: #e8eee4;
+    --gold: #c4a46b;
+    --gold-light: #dfc08a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--warm-white);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.5rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: all 0.5s ease;
+  }
+  nav.scrolled {
+    background: rgba(245,240,232,0.95);
+    backdrop-filter: blur(12px);
+    padding: 1rem 4rem;
+    box-shadow: 0 1px 0 rgba(122,140,110,0.15);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--warm-white);
+    text-decoration: none;
+    transition: color 0.4s;
+  }
+  nav.scrolled .nav-logo { color: var(--charcoal); }
+  .nav-links { display: flex; gap: 2.5rem; align-items: center; list-style: none; }
+  .nav-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    transition: color 0.3s;
+    font-weight: 300;
+  }
+  nav.scrolled .nav-links a { color: var(--charcoal); }
+  .nav-links a:hover { color: var(--gold-light); }
+  nav.scrolled .nav-links a:hover { color: var(--sage); }
+  .nav-cta {
+    background: var(--sage) !important;
+    color: white !important;
+    padding: 0.6rem 1.4rem !important;
+    border-radius: 0 !important;
+    letter-spacing: 0.15em !important;
+    transition: background 0.3s !important;
+  }
+  .nav-cta:hover { background: var(--earth) !important; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(160deg, #2e3d2a 0%, #3d4f35 30%, #5c6e50 60%, #7a8c6e 100%);
+  }
+  .hero-texture {
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+    opacity: 0.4;
+  }
+  .hero-circles {
+    position: absolute; inset: 0; overflow: hidden;
+  }
+  .hero-circles::before {
+    content: '';
+    position: absolute;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    border: 1px solid rgba(196,164,107,0.15);
+    top: -150px; right: -150px;
+    animation: breathe 8s ease-in-out infinite;
+  }
+  .hero-circles::after {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(196,164,107,0.1);
+    bottom: -100px; left: -100px;
+    animation: breathe 10s ease-in-out infinite reverse;
+  }
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.05); opacity: 1; }
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center;
+    padding: 2rem;
+    animation: fadeUp 1.2s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+    animation: fadeUp 1.2s 0.2s ease both;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 300;
+    color: var(--warm-white);
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.3rem;
+    animation: fadeUp 1.2s 0.3s ease both;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.15em;
+    margin-bottom: 3rem;
+    font-weight: 300;
+    animation: fadeUp 1.2s 0.45s ease both;
+  }
+  .hero-actions {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    animation: fadeUp 1.2s 0.6s ease both;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--charcoal);
+    padding: 1rem 2.5rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline {
+    border: 1px solid rgba(255,255,255,0.4);
+    color: white;
+    padding: 1rem 2.5rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 300;
+    transition: all 0.3s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.08); }
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase;
+    animation: fadeUp 1.2s 1s ease both;
+  }
+  .scroll-line {
+    width: 1px; height: 50px;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.3));
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 0.8; transform: scaleY(1.2); }
+  }
+
+  /* ─── SECTION UTILS ─── */
+  section { padding: 7rem 4rem; }
+  .section-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--charcoal);
+  }
+  .section-title em { font-style: italic; color: var(--sage); }
+
+  /* ─── MARQUEE ─── */
+  .marquee-strip {
+    background: var(--charcoal);
+    padding: 1.2rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-inner {
+    display: inline-block;
+    animation: marquee 30s linear infinite;
+  }
+  .marquee-inner span {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin: 0 3rem;
+  }
+  .marquee-inner .dot {
+    color: var(--gold);
+    margin: 0 1rem;
+    letter-spacing: 0;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ─── INTRO ─── */
+  .intro { background: var(--cream); padding: 8rem 4rem; }
+  .intro-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; align-items: center;
+  }
+  .intro-visual {
+    position: relative;
+  }
+  .intro-img-wrap {
+    width: 100%; aspect-ratio: 3/4;
+    background: linear-gradient(135deg, var(--sage) 0%, var(--earth) 100%);
+    position: relative; overflow: hidden;
+  }
+  .intro-img-wrap::after {
+    content: '✦';
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 8rem; color: rgba(255,255,255,0.08);
+    letter-spacing: -5px;
+  }
+  .intro-badge {
+    position: absolute;
+    bottom: -2rem; right: -2rem;
+    width: 130px; height: 130px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+  }
+  .intro-badge .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; color: white; line-height: 1;
+  }
+  .intro-badge .lbl {
+    font-size: 0.55rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: rgba(255,255,255,0.8);
+    margin-top: 0.2rem;
+  }
+  .intro-text { }
+  .intro-text p {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: #5a5a50;
+    font-weight: 300;
+    margin-top: 2rem;
+  }
+  .intro-text p + p { margin-top: 1rem; }
+  .intro-quote {
+    margin-top: 2.5rem;
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--sage-pale);
+  }
+  .intro-quote blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--sage);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  /* ─── SERVICES ─── */
+  .services { background: var(--warm-white); }
+  .services-header {
+    max-width: 1200px; margin: 0 auto 5rem;
+    display: flex; justify-content: space-between; align-items: flex-end;
+  }
+  .services-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px;
+    background: var(--sage-pale);
+  }
+  .service-card {
+    background: var(--warm-white);
+    padding: 3rem 2.5rem;
+    position: relative; overflow: hidden;
+    transition: all 0.4s;
+    cursor: default;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: var(--sage);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+  }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-card:hover { background: var(--mist); }
+  .service-icon {
+    width: 48px; height: 48px;
+    background: var(--mist);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    transition: background 0.3s;
+  }
+  .service-card:hover .service-icon { background: var(--sage-pale); }
+  .service-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 0.8rem;
+    color: var(--charcoal);
+  }
+  .service-card p {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: #6a6a60;
+    font-weight: 300;
+  }
+  .service-tag {
+    display: inline-block;
+    margin-top: 1.5rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sage);
+    font-weight: 400;
+  }
+
+  /* ─── FEATURED / HOCATT ─── */
+  .featured {
+    background: var(--charcoal);
+    padding: 0;
+    overflow: hidden;
+  }
+  .featured-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    min-height: 600px;
+  }
+  .featured-visual {
+    background: linear-gradient(135deg, #3d4f35 0%, #1e2a1c 100%);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .featured-visual-content {
+    text-align: center; color: rgba(255,255,255,0.15);
+    font-size: 10rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    line-height: 1;
+    user-select: none;
+  }
+  .featured-visual::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 60px,
+      rgba(196,164,107,0.03) 60px,
+      rgba(196,164,107,0.03) 61px
+    );
+  }
+  .featured-text {
+    padding: 6rem 5rem;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .featured-text .section-label { color: var(--gold-light); }
+  .featured-text .section-title { color: white; }
+  .featured-text p {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+  }
+  .featured-stats {
+    display: flex; gap: 3rem; margin-top: 3rem;
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-top: 0.3rem;
+  }
+  .btn-gold {
+    display: inline-block;
+    margin-top: 3rem;
+    background: var(--gold);
+    color: var(--charcoal);
+    padding: 1rem 2.5rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
+    align-self: flex-start;
+  }
+  .btn-gold:hover { background: var(--gold-light); }
+
+  /* ─── TEA ROOM ─── */
+  .tea { background: var(--cream-deep); }
+  .tea-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: 6rem; align-items: center;
+  }
+  .tea-text p {
+    margin-top: 2rem;
+    font-size: 0.9rem; line-height: 1.9;
+    color: #6a6a60; font-weight: 300;
+  }
+  .tea-menu {
+    margin-top: 2.5rem;
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .tea-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--sage-pale);
+  }
+  .tea-item:first-child { border-top: 1px solid var(--sage-pale); }
+  .tea-item-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; color: var(--charcoal);
+  }
+  .tea-item-desc {
+    font-size: 0.72rem; color: #9a9a8a;
+    margin-top: 0.2rem; font-weight: 300;
+  }
+  .tea-item-price {
+    font-size: 0.8rem; color: var(--sage);
+    font-weight: 400; white-space: nowrap; margin-left: 1rem;
+  }
+  .tea-visual {
+    background: linear-gradient(160deg, var(--earth) 0%, var(--sage) 100%);
+    aspect-ratio: 3/4;
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .tea-visual-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 6rem; font-style: italic;
+    color: rgba(255,255,255,0.1);
+    text-align: center; line-height: 1;
+  }
+
+  /* ─── EXPERIENCE ─── */
+  .experience { background: var(--warm-white); }
+  .experience-inner { max-width: 1200px; margin: 0 auto; }
+  .experience-header { text-align: center; margin-bottom: 5rem; }
+  .experience-header .section-label { justify-content: center; display: flex; }
+  .experience-header .section-title { margin-top: 0.5rem; }
+  .steps-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
+    position: relative;
+  }
+  .steps-grid::before {
+    content: '';
+    position: absolute;
+    top: 28px; left: calc(12.5% + 14px); right: calc(12.5% + 14px);
+    height: 1px; background: var(--sage-pale);
+  }
+  .step { text-align: center; padding: 0 1rem; }
+  .step-num {
+    width: 56px; height: 56px;
+    border: 1px solid var(--sage-pale);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; color: var(--sage);
+    margin: 0 auto 1.5rem;
+    background: var(--warm-white);
+    position: relative; z-index: 1;
+  }
+  .step h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-weight: 400;
+    margin-bottom: 0.8rem; color: var(--charcoal);
+  }
+  .step p { font-size: 0.82rem; line-height: 1.7; color: #7a7a70; font-weight: 300; }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials { background: var(--mist); padding: 7rem 4rem; }
+  .test-inner { max-width: 1200px; margin: 0 auto; }
+  .test-header { text-align: center; margin-bottom: 4rem; }
+  .test-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+  }
+  .test-card {
+    background: white;
+    padding: 2.5rem;
+    position: relative;
+  }
+  .test-stars {
+    color: var(--gold); font-size: 0.8rem; letter-spacing: 0.1em; margin-bottom: 1.5rem;
+  }
+  .test-card blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-style: italic;
+    line-height: 1.65; color: var(--charcoal);
+    font-weight: 300;
+  }
+  .test-author {
+    margin-top: 1.5rem;
+    font-size: 0.7rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--sage);
+  }
+
+  /* ─── BOOKING BANNER ─── */
+  .booking {
+    background: linear-gradient(135deg, var(--sage) 0%, var(--earth) 100%);
+    padding: 6rem 4rem;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .booking::before {
+    content: '';
+    position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .booking::after {
+    content: '';
+    position: absolute; bottom: -150px; right: -100px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .booking-inner { position: relative; z-index: 1; }
+  .booking h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 300;
+    color: white; margin-bottom: 1rem;
+  }
+  .booking h2 em { font-style: italic; color: var(--gold-light); }
+  .booking p {
+    font-size: 0.9rem; color: rgba(255,255,255,0.65);
+    font-weight: 300; margin-bottom: 3rem; letter-spacing: 0.05em;
+  }
+  .booking-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-white {
+    background: white;
+    color: var(--charcoal);
+    padding: 1rem 2.5rem;
+    font-size: 0.7rem; letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none; font-weight: 500;
+    transition: all 0.3s; display: inline-block;
+  }
+  .btn-white:hover { background: var(--cream); }
+  .btn-outline-white {
+    border: 1px solid rgba(255,255,255,0.5);
+    color: white;
+    padding: 1rem 2.5rem;
+    font-size: 0.7rem; letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none; font-weight: 300;
+    transition: all 0.3s; display: inline-block;
+  }
+  .btn-outline-white:hover { background: rgba(255,255,255,0.1); }
+
+  /* ─── INFO BAR ─── */
+  .info-bar {
+    background: var(--cream);
+    padding: 4rem;
+  }
+  .info-bar-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2rem; border-top: 1px solid var(--sage-pale);
+    padding-top: 3rem;
+  }
+  .info-item { }
+  .info-label {
+    font-size: 0.6rem; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--sage);
+    margin-bottom: 0.8rem;
+  }
+  .info-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; color: var(--charcoal);
+    line-height: 1.5;
+  }
+  .info-value a { color: inherit; text-decoration: none; }
+  .info-value a:hover { color: var(--sage); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--charcoal);
+    padding: 5rem 4rem 3rem;
+  }
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 4rem; padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer-brand .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 300;
+    color: white; letter-spacing: 0.05em;
+    margin-bottom: 1rem; display: block;
+  }
+  .footer-brand p {
+    font-size: 0.8rem; line-height: 1.7;
+    color: rgba(255,255,255,0.4); font-weight: 300;
+    max-width: 260px;
+  }
+  .footer-tagline {
+    display: inline-block;
+    margin-top: 1.5rem;
+    font-size: 0.62rem; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--gold-light);
+    font-weight: 300;
+  }
+  .footer-col h5 {
+    font-size: 0.62rem; letter-spacing: 0.25em;
+    text-transform: uppercase; color: rgba(255,255,255,0.5);
+    margin-bottom: 1.5rem; font-weight: 400;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li + li { margin-top: 0.8rem; }
+  .footer-col a {
+    font-size: 0.82rem; color: rgba(255,255,255,0.45);
+    text-decoration: none; font-weight: 300;
+    transition: color 0.3s;
+  }
+  .footer-col a:hover { color: rgba(255,255,255,0.85); }
+  .footer-bottom {
+    max-width: 1200px; margin: 0 auto;
+    padding-top: 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.7rem; color: rgba(255,255,255,0.25);
+    font-weight: 300;
+  }
+
+  /* ─── REVEAL ANIMATIONS ─── */
+  .reveal {
+    opacity: 0; transform: translateY(25px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.15s; }
+  .reveal-delay-2 { transition-delay: 0.3s; }
+  .reveal-delay-3 { transition-delay: 0.45s; }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    nav.scrolled { padding: 0.8rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 1.5rem; }
+    .intro-grid, .featured-inner, .tea-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: repeat(2, 1fr); }
+    .steps-grid::before { display: none; }
+    .test-grid { grid-template-columns: 1fr; }
+    .info-bar-inner { grid-template-columns: 1fr 1fr; }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .services-header { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
+    .featured-text { padding: 4rem 2rem; }
+    .intro-badge { right: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Exhale Wellness</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#tea">Tea Room</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#book" class="nav-cta">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-texture"></div>
+  <div class="hero-circles"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Saint Petersburg, Florida &nbsp;·&nbsp; MM#42923</p>
+    <h1>Exhale &amp;<br><em>Restore</em></h1>
+    <p class="hero-sub">Wellness Spa &amp; Tea Room</p>
+    <div class="hero-actions">
+      <a href="#book" class="btn-primary">Book a Treatment</a>
+      <a href="#services" class="btn-outline">Explore Services</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span>Massage Therapy</span><span class="dot">◆</span>
+    <span>Cold Plunge</span><span class="dot">◆</span>
+    <span>Mineral Float</span><span class="dot">◆</span>
+    <span>Red Light Therapy</span><span class="dot">◆</span>
+    <span>HOCATT Ozone</span><span class="dot">◆</span>
+    <span>Infrared Sauna</span><span class="dot">◆</span>
+    <span>Tea Room</span><span class="dot">◆</span>
+    <span>Fitness Pod</span><span class="dot">◆</span>
+    <span>Compression Therapy</span><span class="dot">◆</span>
+    <span>Do Something Nice For Yourself Today</span><span class="dot">◆</span>
+    <span>Massage Therapy</span><span class="dot">◆</span>
+    <span>Cold Plunge</span><span class="dot">◆</span>
+    <span>Mineral Float</span><span class="dot">◆</span>
+    <span>Red Light Therapy</span><span class="dot">◆</span>
+    <span>HOCATT Ozone</span><span class="dot">◆</span>
+    <span>Infrared Sauna</span><span class="dot">◆</span>
+    <span>Tea Room</span><span class="dot">◆</span>
+    <span>Fitness Pod</span><span class="dot">◆</span>
+    <span>Compression Therapy</span><span class="dot">◆</span>
+    <span>Do Something Nice For Yourself Today</span><span class="dot">◆</span>
+  </div>
+</div>
+
+<!-- INTRO -->
+<section class="intro" id="about">
+  <div class="intro-grid">
+    <div class="intro-visual reveal">
+      <div class="intro-img-wrap"></div>
+      <div class="intro-badge">
+        <span class="num">5★</span>
+        <span class="lbl">Rated Spa<br>in St. Pete</span>
+      </div>
+    </div>
+    <div class="intro-text">
+      <p class="section-label reveal">Our Philosophy</p>
+      <h2 class="section-title reveal reveal-delay-1">A sanctuary<br>for the <em>whole self</em></h2>
+      <p class="reveal reveal-delay-2">Exhale Wellness is Saint Petersburg's premier destination for holistic restoration. We combine advanced therapeutic modalities with the timeless ritual of tea — creating a space where your body, mind, and spirit can truly let go.</p>
+      <p class="reveal reveal-delay-2">Owner and licensed massage therapist Keri Lounge has curated every detail of your experience, from the whisper-quiet treatment rooms to the warm cup waiting for you after your session.</p>
+      <div class="intro-quote reveal reveal-delay-3">
+        <blockquote>"Do something nice for yourself today."</blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header reveal">
+    <div>
+      <p class="section-label">What We Offer</p>
+      <h2 class="section-title">Curated<br><em>treatments</em></h2>
+    </div>
+    <a href="#book" style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--sage);text-decoration:none;border-bottom:1px solid var(--sage-pale);padding-bottom:2px;">View all services →</a>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">🤲</div>
+      <h3>Licensed Massage Therapy</h3>
+      <p>Deep tissue, Swedish, therapeutic, and customized massage programs designed around your unique recovery and wellness goals.</p>
+      <span class="service-tag">60 · 90 · 120 min</span>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-icon">❄️</div>
+      <h3>Cold Plunge</h3>
+      <p>Experience the powerful anti-inflammatory benefits of cold hydrotherapy, trusted by athletes and wellness seekers to accelerate recovery and boost vitality.</p>
+      <span class="service-tag">Recovery Therapy</span>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-icon">💧</div>
+      <h3>Mineral Float</h3>
+      <p>Drift into effortless weightlessness in our Epsom salt float pod. A profound sensory experience that quiets the nervous system and deepens relaxation.</p>
+      <span class="service-tag">60 min sessions</span>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">🌿</div>
+      <h3>HOCATT Ozone Therapy</h3>
+      <p>Our signature multi-wave ozone and carbonic acid steam capsule — a full-body experience combining ozone, steam, far infrared, and PEMF technology.</p>
+      <span class="service-tag">Advanced Wellness</span>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-icon">💡</div>
+      <h3>Red Light Therapy</h3>
+      <p>Clinically studied near-infrared and red light wavelengths to support skin health, reduce inflammation, and promote cellular regeneration.</p>
+      <span class="service-tag">Anti-aging · Recovery</span>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-icon">🫁</div>
+      <h3>Compression Therapy</h3>
+      <p>Sequential pneumatic compression to enhance circulation, reduce muscle soreness, and accelerate lymphatic drainage after intense activity or injury.</p>
+      <span class="service-tag">Recovery Pod</span>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED / HOCATT -->
+<div class="featured" id="hocatt">
+  <div class="featured-inner">
+    <div class="featured-visual">
+      <div class="featured-visual-content">O₃</div>
+    </div>
+    <div class="featured-text">
+      <p class="section-label">Signature Experience</p>
+      <h2 class="section-title">The <em>HOCATT</em><br>Difference</h2>
+      <p>HOCATT stands for Hyperthermic Ozone and Carbonic Acid Transdermal Technology. This all-in-one wellness chamber delivers ozone therapy, infrared heat, carbonic acid, PEMF, and photon light simultaneously — in a single 30-minute session that rivals hours of traditional spa treatments.</p>
+      <p style="margin-top:1rem;">Trusted by integrative health practitioners worldwide for immune support, detoxification, performance enhancement, and deep cellular healing.</p>
+      <div class="featured-stats">
+        <div>
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Therapies in One</div>
+        </div>
+        <div>
+          <div class="stat-num">30</div>
+          <div class="stat-label">Minute Session</div>
+        </div>
+        <div>
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Non-invasive</div>
+        </div>
+      </div>
+      <a href="#book" class="btn-gold">Book HOCATT Session</a>
+    </div>
+  </div>
+</div>
+
+<!-- TEA ROOM -->
+<section class="tea" id="tea">
+  <div class="tea-inner">
+    <div class="tea-text">
+      <p class="section-label reveal">Tea Room</p>
+      <h2 class="section-title reveal reveal-delay-1">A ritual<br>of <em>warmth</em></h2>
+      <p class="reveal reveal-delay-2">Complete your wellness journey in our tranquil tea room. Sip from a curated selection of organic herbal teas, each chosen for its therapeutic properties and soul-warming qualities.</p>
+      <div class="tea-menu reveal reveal-delay-3">
+        <div class="tea-item">
+          <div>
+            <div class="tea-item-name">Watermelon Mint Refresh</div>
+            <div class="tea-item-desc">House signature · iced seasonal blend</div>
+          </div>
+          <div class="tea-item-price">Iced · Hot</div>
+        </div>
+        <div class="tea-item">
+          <div>
+            <div class="tea-item-name">Chamomile Dream</div>
+            <div class="tea-item-desc">Organic chamomile · lemon · raw honey</div>
+          </div>
+          <div class="tea-item-price">Hot</div>
+        </div>
+        <div class="tea-item">
+          <div>
+            <div class="tea-item-name">Herbal Adaptogen Blend</div>
+            <div class="tea-item-desc">Ashwagandha · tulsi · ginger root</div>
+          </div>
+          <div class="tea-item-price">Hot · Iced</div>
+        </div>
+        <div class="tea-item">
+          <div>
+            <div class="tea-item-name">Golden Turmeric Milk</div>
+            <div class="tea-item-desc">Anti-inflammatory · black pepper · cinnamon</div>
+          </div>
+          <div class="tea-item-price">Hot</div>
+        </div>
+        <div class="tea-item">
+          <div>
+            <div class="tea-item-name">Seasonal Specialty</div>
+            <div class="tea-item-desc">Ask your therapist about today's blend</div>
+          </div>
+          <div class="tea-item-price">Varies</div>
+        </div>
+      </div>
+    </div>
+    <div class="tea-visual reveal reveal-delay-2">
+      <div class="tea-visual-text">Tea<br>&amp;<br>Restore</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE STEPS -->
+<section class="experience">
+  <div class="experience-inner">
+    <div class="experience-header">
+      <p class="section-label">Your Visit</p>
+      <h2 class="section-title">How it <em>works</em></h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <h4>Book Online</h4>
+        <p>Choose your treatment, preferred therapist, and a time that fits your schedule — all from the comfort of home.</p>
+      </div>
+      <div class="step reveal reveal-delay-1">
+        <div class="step-num">02</div>
+        <h4>Arrive & Unwind</h4>
+        <p>Step into our calming sanctuary. Your therapist will welcome you and customize your session to your goals.</p>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-num">03</div>
+        <h4>Your Treatment</h4>
+        <p>Surrender to expert hands and advanced wellness technology, tailored to your body's needs that day.</p>
+      </div>
+      <div class="step reveal reveal-delay-3">
+        <div class="step-num">04</div>
+        <h4>Tea & Restore</h4>
+        <p>Settle into the tea room, sip something warm, and let your body fully integrate the healing before you return to the world.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="test-inner">
+    <div class="test-header">
+      <p class="section-label">Client Love</p>
+      <h2 class="section-title">What our guests <em>say</em></h2>
+    </div>
+    <div class="test-grid">
+      <div class="test-card reveal">
+        <div class="test-stars">★★★★★</div>
+        <blockquote>"Best massage I've ever had in my life. Keri genuinely listened to what my body needed and the deep tissue work transformed my recovery completely."</blockquote>
+        <div class="test-author">— Sarah M., St. Petersburg</div>
+      </div>
+      <div class="test-card reveal reveal-delay-1">
+        <div class="test-stars">★★★★★</div>
+        <blockquote>"The HOCATT session was unlike anything I've experienced. I walked out feeling like a completely different person — lighter, clearer, energized."</blockquote>
+        <div class="test-author">— James T., Tampa</div>
+      </div>
+      <div class="test-card reveal reveal-delay-2">
+        <div class="test-stars">★★★★★</div>
+        <blockquote>"The facility is spotless and the atmosphere is so intentionally calming. The iced watermelon mint tea afterward was the perfect finishing touch."</blockquote>
+        <div class="test-author">— Maria L., St. Petersburg</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING BANNER -->
+<section class="booking" id="book">
+  <div class="booking-inner">
+    <h2>Ready to <em>exhale?</em></h2>
+    <p>Appointments available Monday–Saturday. Same-week bookings often available.</p>
+    <div class="booking-actions">
+      <a href="tel:7273404603" class="btn-white">Call (727) 340-4603</a>
+      <a href="#" class="btn-outline-white">Book Online</a>
+    </div>
+  </div>
+</section>
+
+<!-- INFO BAR -->
+<div class="info-bar">
+  <div class="info-bar-inner">
+    <div class="info-item reveal">
+      <div class="info-label">Location</div>
+      <div class="info-value">3338 Tyrone Blvd N<br>Saint Petersburg, FL 33710</div>
+    </div>
+    <div class="info-item reveal reveal-delay-1">
+      <div class="info-label">Hours</div>
+      <div class="info-value">
+        Mon 9am–5pm<br>
+        Tue–Fri 9am–6pm<br>
+        Sat 9am–4pm · Sun Closed
+      </div>
+    </div>
+    <div class="info-item reveal reveal-delay-2">
+      <div class="info-label">Contact</div>
+      <div class="info-value">
+        <a href="tel:7273404603">(727) 340-4603</a><br>
+        <a href="https://www.exhalewellness.us">exhalewellness.us</a>
+      </div>
+    </div>
+    <div class="info-item reveal reveal-delay-3">
+      <div class="info-label">Follow Along</div>
+      <div class="info-value">
+        <a href="#">@exhalewellnessspaandtearoom</a><br>
+        on Instagram
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="logo">Exhale Wellness</span>
+      <p>A wellness spa and tea room dedicated to your complete restoration. Licensed massage therapy, advanced wellness technology, and the healing power of intentional rest.</p>
+      <span class="footer-tagline">Do something nice for yourself today</span>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#">Massage Therapy</a></li>
+        <li><a href="#">HOCATT Ozone</a></li>
+        <li><a href="#">Cold Plunge</a></li>
+        <li><a href="#">Mineral Float</a></li>
+        <li><a href="#">Red Light Therapy</a></li>
+        <li><a href="#">Infrared Sauna</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Visit</h5>
+      <ul>
+        <li><a href="#">Tea Room</a></li>
+        <li><a href="#">Gift Cards</a></li>
+        <li><a href="#">Memberships</a></li>
+        <li><a href="#">About Keri</a></li>
+        <li><a href="#">Reviews</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Policies</h5>
+      <ul>
+        <li><a href="#">Booking Info</a></li>
+        <li><a href="#">Cancellation</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">MM#42923</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Exhale Wellness Spa & Tea Room LLC — Saint Petersburg, FL</span>
+    <span>Licensed by Florida Dept. of Health · MM#42923</span>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll behavior
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+</script>
+</body>
+</html>
