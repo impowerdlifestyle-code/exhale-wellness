@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Treatments — Exhale Wellness Spa & Tea Room</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --sage: #7a8c6e; --sage-light: #a3b394; --sage-pale: #d6ddd0;
+    --cream: #f5f0e8; --cream-deep: #ede5d5; --warm-white: #faf8f4;
+    --earth: #8b7355; --charcoal: #2a2a27; --mist: #e8eee4;
+    --gold: #c4a46b; --gold-light: #dfc08a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Jost', sans-serif; background: var(--warm-white); color: var(--charcoal); overflow-x: hidden; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 4rem; display: flex; align-items: center; justify-content: space-between; transition: all 0.5s ease; }
+  nav.scrolled { background: rgba(245,240,232,0.96); backdrop-filter: blur(12px); padding: 1rem 4rem; box-shadow: 0 1px 0 rgba(122,140,110,0.15); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; letter-spacing: 0.08em; color: var(--warm-white); text-decoration: none; transition: color 0.4s; }
+  nav.scrolled .nav-logo { color: var(--charcoal); }
+  .nav-links { display: flex; gap: 2.5rem; align-items: center; list-style: none; }
+  .nav-links a { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.85); text-decoration: none; transition: color 0.3s; font-weight: 300; }
+  nav.scrolled .nav-links a { color: var(--charcoal); }
+  .nav-links a:hover { color: var(--gold-light); }
+  nav.scrolled .nav-links a:hover { color: var(--sage); }
+  .nav-cta { background: var(--sage) !important; color: white !important; padding: 0.6rem 1.4rem !important; letter-spacing: 0.15em !important; transition: background 0.3s !important; }
+  .nav-cta:hover { background: var(--earth) !important; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .hamburger span { display: block; width: 24px; height: 1.5px; background: white; transition: all 0.3s; }
+  nav.scrolled .hamburger span { background: var(--charcoal); }
+  .mobile-menu { display: none; position: fixed; inset: 0; background: var(--charcoal); z-index: 200; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: white; text-decoration: none; transition: color 0.3s; }
+  .mobile-menu a:hover { color: var(--gold-light); }
+  .mobile-close { position: absolute; top: 1.5rem; right: 2rem; background: none; border: none; color: rgba(255,255,255,0.5); font-size: 2.5rem; cursor: pointer; }
+  section { padding: 7rem 4rem; }
+  .section-label { font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--sage); margin-bottom: 1rem; font-weight: 400; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 300; line-height: 1.1; color: var(--charcoal); }
+  .section-title em { font-style: italic; color: var(--sage); }
+  .reveal { opacity: 0; transform: translateY(25px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.15s; }
+  .reveal-delay-2 { transition-delay: 0.3s; }
+  .reveal-delay-3 { transition-delay: 0.45s; }
+  footer { background: var(--charcoal); padding: 5rem 4rem 3rem; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .footer-brand .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300; color: white; letter-spacing: 0.05em; margin-bottom: 1rem; display: block; text-decoration: none; }
+  .footer-brand p { font-size: 0.8rem; line-height: 1.7; color: rgba(255,255,255,0.4); font-weight: 300; max-width: 260px; }
+  .footer-tagline { display: inline-block; margin-top: 1.5rem; font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold-light); font-weight: 300; }
+  .footer-col h5 { font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 1.5rem; font-weight: 400; }
+  .footer-col ul { list-style: none; }
+  .footer-col li + li { margin-top: 0.8rem; }
+  .footer-col a { font-size: 0.82rem; color: rgba(255,255,255,0.45); text-decoration: none; font-weight: 300; transition: color 0.3s; }
+  .footer-col a:hover { color: rgba(255,255,255,0.85); }
+  .footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem; color: rgba(255,255,255,0.25); font-weight: 300; }
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    nav.scrolled { padding: 0.8rem 1.5rem; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    section { padding: 4rem 1.5rem; }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  }
+
+  /* PAGE HERO */
+  .page-hero { padding: 10rem 4rem 6rem; background: linear-gradient(160deg, #2e3d2a 0%, #3d4f35 40%, #5c6e50 100%); position: relative; overflow: hidden; }
+  .page-hero::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 80px, rgba(196,164,107,0.02) 80px, rgba(196,164,107,0.02) 81px); }
+  .page-hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+  .page-hero p { font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 1rem; font-weight: 300; }
+  .page-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 300; color: white; line-height: 1; }
+  .page-hero h1 em { font-style: italic; color: var(--gold-light); }
+  .page-hero-sub { font-size: 1rem; color: rgba(255,255,255,0.5); font-weight: 300; margin-top: 1.5rem; max-width: 500px; line-height: 1.7; }
+  /* FILTER NAV */
+  .filter-bar { background: var(--cream); padding: 1.5rem 4rem; border-bottom: 1px solid var(--sage-pale); position: sticky; top: 60px; z-index: 50; }
+  .filter-inner { max-width: 1200px; margin: 0 auto; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .filter-btn { padding: 0.5rem 1.2rem; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 400; border: 1px solid var(--sage-pale); background: transparent; color: var(--charcoal); cursor: pointer; transition: all 0.3s; font-family: 'Jost', sans-serif; }
+  .filter-btn:hover, .filter-btn.active { background: var(--sage); color: white; border-color: var(--sage); }
+  /* TREATMENT SECTIONS */
+  .treatments-wrap { max-width: 1200px; margin: 0 auto; }
+  .treatment-section { padding: 6rem 4rem; border-bottom: 1px solid var(--sage-pale); }
+  .treatment-section:last-child { border-bottom: none; }
+  .treatment-section:nth-child(even) { background: var(--cream); }
+  .treatment-section:nth-child(odd) { background: var(--warm-white); }
+  .treatment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; max-width: 1200px; margin: 0 auto; }
+  .treatment-grid.reverse { direction: rtl; }
+  .treatment-grid.reverse > * { direction: ltr; }
+  .treatment-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; background: var(--sage); }
+  .treatment-img-placeholder { width: 100%; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; font-size: 5rem; }
+  .treatment-content { }
+  .treatment-content .section-label { color: var(--sage); }
+  .treatment-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; line-height: 1.1; color: var(--charcoal); margin-top: 0.5rem; }
+  .treatment-title em { font-style: italic; color: var(--sage); }
+  .treatment-desc { font-size: 0.9rem; line-height: 1.9; color: #6a6a60; font-weight: 300; margin-top: 1.5rem; }
+  .treatment-desc + .treatment-desc { margin-top: 1rem; }
+  .benefits-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  .benefit-item { display: flex; align-items: center; gap: 0.8rem; font-size: 0.82rem; color: #6a6a60; font-weight: 300; }
+  .benefit-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sage); flex-shrink: 0; }
+  .treatment-meta { display: flex; gap: 2rem; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--sage-pale); }
+  .meta-item { }
+  .meta-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.3rem; }
+  .meta-value { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--charcoal); }
+  .treatment-cta { display: inline-block; margin-top: 2rem; background: var(--sage); color: white; padding: 0.9rem 2rem; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; font-weight: 400; transition: all 0.3s; }
+  .treatment-cta:hover { background: var(--earth); }
+  /* BOOKING STRIP */
+  .book-strip { background: var(--charcoal); padding: 4rem; text-align: center; }
+  .book-strip h3 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: white; margin-bottom: 0.8rem; }
+  .book-strip h3 em { font-style: italic; color: var(--gold-light); }
+  .book-strip p { font-size: 0.85rem; color: rgba(255,255,255,0.5); font-weight: 300; margin-bottom: 2rem; }
+  .book-strip-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-gold-lg { background: var(--gold); color: var(--charcoal); padding: 1rem 2.5rem; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; font-weight: 500; transition: all 0.3s; display: inline-block; }
+  .btn-gold-lg:hover { background: var(--gold-light); }
+  .btn-ghost { border: 1px solid rgba(255,255,255,0.3); color: white; padding: 1rem 2.5rem; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; font-weight: 300; transition: all 0.3s; display: inline-block; }
+  .btn-ghost:hover { background: rgba(255,255,255,0.08); }
+  @media (max-width: 900px) {
+    .page-hero { padding: 8rem 1.5rem 4rem; }
+    .filter-bar { padding: 1rem 1.5rem; top: 56px; }
+    .treatment-section { padding: 4rem 1.5rem; }
+    .treatment-grid, .treatment-grid.reverse { grid-template-columns: 1fr; gap: 2.5rem; direction: ltr; }
+    .book-strip { padding: 3rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">Exhale Wellness</a>
+  <ul class="nav-links">
+    <li><a href="treatments.html">Treatments</a></li>
+    <li><a href="index.html#tea">Tea Room</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#testimonials">Reviews</a></li>
+    <li><a href="index.html#book" class="nav-cta">Book Now</a></li>
+  </ul>
+  <button class="hamburger" onclick="document.getElementById('mobileMenu').classList.add('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="document.getElementById('mobileMenu').classList.remove('open')">×</button>
+  <a href="index.html">Home</a>
+  <a href="treatments.html">Treatments</a>
+  <a href="index.html#tea">Tea Room</a>
+  <a href="index.html#about">About</a>
+  <a href="index.html#testimonials">Reviews</a>
+  <a href="index.html#book" style="color:var(--gold-light)">Book Now</a>
+</div>
+
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <p>Exhale Wellness · St. Petersburg, FL</p>
+    <h1>Our <em>Treatments</em></h1>
+    <p class="page-hero-sub">Every service is thoughtfully selected to support your body's natural capacity to heal, restore, and thrive.</p>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <div class="filter-inner">
+    <button class="filter-btn active" onclick="scrollTo('massage')">Massage</button>
+    <button class="filter-btn" onclick="scrollTo('hocatt')">HOCATT Ozone</button>
+    <button class="filter-btn" onclick="scrollTo('cold-plunge')">Cold Plunge</button>
+    <button class="filter-btn" onclick="scrollTo('float')">Mineral Float</button>
+    <button class="filter-btn" onclick="scrollTo('red-light')">Red Light</button>
+    <button class="filter-btn" onclick="scrollTo('sauna')">Infrared Sauna</button>
+    <button class="filter-btn" onclick="scrollTo('compression')">Compression</button>
+    <button class="filter-btn" onclick="scrollTo('fitness-pod')">Fitness Pod</button>
+  </div>
+</div>
+
+<!-- MASSAGE -->
+<div id="massage" class="treatment-section">
+  <div class="treatment-grid">
+    <div class="treatment-img-placeholder" style="background: linear-gradient(135deg, #7a8c6e, #5c6e50);">🤲</div>
+    <div class="treatment-content reveal">
+      <p class="section-label">Bodywork</p>
+      <h2 class="treatment-title">Licensed Massage<br><em>Therapy</em></h2>
+      <p class="treatment-desc">Our licensed massage therapy is the cornerstone of Exhale Wellness. Owner and lead therapist Keri Lounge brings years of expertise in therapeutic bodywork, tailoring every session to your body's unique needs — whether you're recovering from injury, managing chronic pain, or simply seeking deep relaxation.</p>
+      <p class="treatment-desc">We offer Swedish relaxation, deep tissue, therapeutic, prenatal (2nd & 3rd trimester), and fully customized combination sessions.</p>
+      <div class="benefits-list">
+        <div class="benefit-item"><div class="benefit-dot"></div>Relieves chronic muscle tension and pain</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Improves circulation and lymphatic flow</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Reduces stress hormones, boosts serotonin</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Accelerates injury recovery and mobility</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Customized to your goals each session</div>
+      </div>
+      <div class="treatment-meta">
+        <div class="meta-item"><div class="meta-label">Duration</div><div class="meta-value">60 · 90 · 120 min</div></div>
+        <div class="meta-item"><div class="meta-label">Type</div><div class="meta-value">Swedish · Deep Tissue · Therapeutic</div></div>
+        <div class="meta-item"><div class="meta-label">License</div><div class="meta-value">MM#42923</div></div>
+      </div>
+      <a href="https://www.exhalewellness.us" target="_blank" class="treatment-cta">Book Massage →</a>
+    </div>
+  </div>
+</div>
+
+<!-- HOCATT -->
+<div id="hocatt" class="treatment-section">
+  <div class="treatment-grid reverse">
+    <div class="treatment-img-placeholder" style="background: linear-gradient(135deg, #1e2a1c, #3d4f35);">⚗️</div>
+    <div class="treatment-content reveal">
+      <p class="section-label">Signature Treatment</p>
+      <h2 class="treatment-title">HOCATT<br><em>Ozone Therapy</em></h2>
+      <p class="treatment-desc">HOCATT — Hyperthermic Ozone and Carbonic Acid Transdermal Technology — is our most advanced wellness modality. This cutting-edge steam capsule delivers up to 10 therapies simultaneously: ozone, carbonic acid, far infrared, PEMF, photon light therapy, and more.</p>
+      <p class="treatment-desc">In a single 30-minute session, your body receives a comprehensive cellular tune-up trusted by integrative health practitioners worldwide.</p>
+      <div class="benefits-list">
+        <div class="benefit-item"><div class="benefit-dot"></div>Powerful immune system support</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Deep cellular detoxification</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Enhanced athletic performance & recovery</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Anti-aging and skin rejuvenation</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Increased energy and mental clarity</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>100% non-invasive — no needles or medications</div>
+      </div>
+      <div class="treatment-meta">
+        <div class="meta-item"><div class="meta-label">Duration</div><div class="meta-value">30 min</div></div>
+        <div class="meta-item"><div class="meta-label">Therapies</div><div class="meta-value">10+ simultaneous</div></div>
+      </div>
+      <a href="https://www.exhalewellness.us" target="_blank" class="treatment-cta">Book HOCATT →</a>
+    </div>
+  </div>
+</div>
+
+<!-- COLD PLUNGE -->
+<div id="cold-plunge" class="treatment-section">
+  <div class="treatment-grid">
+    <div class="treatment-img-placeholder" style="background: linear-gradient(135deg, #4a7a8a, #2a4a5a);">❄️</div>
+    <div class="treatment-content reveal">
+      <p class="section-label">Recovery</p>
+      <h2 class="treatment-title">Cold Plunge<br><em>Therapy</em></h2>
+      <p class="treatment-desc">Cold hydrotherapy has been used for centuries — and modern science confirms its powerful benefits. Our cold plunge rapidly reduces inflammation, triggers endorphin release, and activates your body's natural recovery mechanisms.</p>
+      <p class="treatment-desc">Trusted by professional athletes, biohackers, and wellness practitioners alike for accelerated recovery, mood enhancement, and metabolic health.</p>
+      <div class="benefits-list">
+        <div class="benefit-item"><div class="benefit-dot"></div>Dramatically reduces inflammation</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Boosts norepinephrine up to 300%</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Accelerates muscle recovery post-workout</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Improves sleep quality and mood</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Builds mental resilience and discipline</div>
+      </div>
+      <div class="treatment-meta">
+        <div class="meta-item"><div class="meta-label">Duration</div><div class="meta-value">10–20 min</div></div>
+        <div class="meta-item"><div class="meta-label">Temperature</div><div class="meta-value">Cold hydrotherapy</div></div>
+      </div>
+      <a href="https://www.exhalewellness.us" target="_blank" class="treatment-cta">Book Cold Plunge →</a>
+    </div>
+  </div>
+</div>
+
+<!-- MINERAL FLOAT -->
+<div id="float" class="treatment-section">
+  <div class="treatment-grid reverse">
+    <div class="treatment-img-placeholder" style="background: linear-gradient(135deg, #5a7a8a, #3a5a6a);">💧</div>
+    <div class="treatment-content reveal">
+      <p class="section-label">Sensory Rest</p>
+      <h2 class="treatment-title">Mineral<br><em>Float</em></h2>
+      <p class="treatment-desc">Float effortlessly in our Epsom salt pod, where 1,000 lbs of magnesium sulfate creates a zero-gravity environment unlike anything you've experienced. Freed from the constant demands of gravity and sensory input, your nervous system enters a state of profound rest.</p>
+      <p class="treatment-desc">Many guests describe floating as achieving the deepest relaxation of their lives — comparable to hours of sleep in a single session.</p>
+      <div class="benefits-list">
+        <div class="benefit-item"><div class="benefit-dot"></div>Deep nervous system reset</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Magnesium absorption for muscle recovery</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Relieves joint and back pain</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Reduces anxiety and mental fatigue</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Enhances creativity and mental clarity</div>
+      </div>
+      <div class="treatment-meta">
+        <div class="meta-item"><div class="meta-label">Duration</div><div class="meta-value">60 min</div></div>
+        <div class="meta-item"><div class="meta-label">Medium</div><div class="meta-value">1,000 lbs Epsom salt</div></div>
+      </div>
+      <a href="https://www.exhalewellness.us" target="_blank" class="treatment-cta">Book Float →</a>
+    </div>
+  </div>
+</div>
+
+<!-- RED LIGHT -->
+<div id="red-light" class="treatment-section">
+  <div class="treatment-grid">
+    <div class="treatment-img-placeholder" style="background: linear-gradient(135deg, #8a3a2a, #6a2a1a);">💡</div>
+    <div class="treatment-content reveal">
+      <p class="section-label">Photobiomodulation</p>
+      <h2 class="treatment-title">Red Light<br><em>Therapy</em></h2>
+      <p class="treatment-desc">Red and near-infrared light therapy uses specific wavelengths of light to penetrate deep into tissue, stimulating cellular energy production (ATP) and triggering the body's natural repair processes. This is one of the most well-researched modalities in modern wellness.</p>
+      <p class="treatment-desc">Clinically studied for skin rejuvenation, pain relief, inflammation reduction, and accelerated healing — with zero UV and no downtime.</p>
+      <div class="benefits-list">
+        <div class="benefit-item"><div class="benefit-dot"></div>Stimulates collagen and elastin production</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Reduces fine lines, wrinkles, and sun damage</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Accelerates wound and tissue healing</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Reduces joint pain and inflammation</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Supports thyroid and hormonal health</div>
+      </div>
+      <div class="treatment-meta">
+        <div class="meta-item"><div class="meta-label">Duration</div><div class="meta-value">15–20 min</div></div>
+        <div class="meta-item"><div class="meta-label">Wavelength</div><div class="meta-value">Red + Near-Infrared</div></div>
+      </div>
+      <a href="https://www.exhalewellness.us" target="_blank" class="treatment-cta">Book Red Light →</a>
+    </div>
+  </div>
+</div>
+
+<!-- INFRARED SAUNA -->
+<div id="sauna" class="treatment-section">
+  <div class="treatment-grid reverse">
+    <div class="treatment-img-placeholder" style="background: linear-gradient(135deg, #8b6040, #5c3d20);">🔥</div>
+    <div class="treatment-content reveal">
+      <p class="section-label">Heat Therapy</p>
+      <h2 class="treatment-title">Infrared<br><em>Sauna</em></h2>
+      <p class="treatment-desc">Unlike traditional saunas that heat the air around you, our infrared sauna uses gentle infrared waves to heat your body directly from within — at a lower, more comfortable temperature that allows for longer, more therapeutic sessions.</p>
+      <p class="treatment-desc">The deep tissue penetration triggers a profound detox sweat, cardiovascular benefits similar to moderate exercise, and lasting muscle relief.</p>
+      <div class="benefits-list">
+        <div class="benefit-item"><div class="benefit-dot"></div>Detoxifies heavy metals and environmental toxins</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Cardiovascular support — heart rate elevation</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Relieves chronic muscle and joint pain</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Promotes deep, restorative sleep</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Supports weight management and metabolism</div>
+      </div>
+      <div class="treatment-meta">
+        <div class="meta-item"><div class="meta-label">Duration</div><div class="meta-value">30–45 min</div></div>
+        <div class="meta-item"><div class="meta-label">Type</div><div class="meta-value">Far Infrared</div></div>
+      </div>
+      <a href="https://www.exhalewellness.us" target="_blank" class="treatment-cta">Book Sauna →</a>
+    </div>
+  </div>
+</div>
+
+<!-- COMPRESSION -->
+<div id="compression" class="treatment-section">
+  <div class="treatment-grid">
+    <div class="treatment-img-placeholder" style="background: linear-gradient(135deg, #6a7a5a, #4a5a3a);">🫁</div>
+    <div class="treatment-content reveal">
+      <p class="section-label">Recovery</p>
+      <h2 class="treatment-title">Compression<br><em>Therapy</em></h2>
+      <p class="treatment-desc">Our compression therapy system uses sequential pneumatic compression — inflating and deflating chambers around your limbs in a wave-like pattern that mimics and amplifies the body's natural muscle pump, dramatically enhancing circulation and lymphatic drainage.</p>
+      <p class="treatment-desc">Originally developed for post-surgical recovery and professional athletes, now available to anyone seeking faster recovery and improved circulatory health.</p>
+      <div class="benefits-list">
+        <div class="benefit-item"><div class="benefit-dot"></div>Flushes lactic acid and metabolic waste</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Reduces post-workout soreness (DOMS)</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Improves lymphatic drainage and reduces swelling</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Supports vascular and circulatory health</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Reduces restless legs and peripheral fatigue</div>
+      </div>
+      <div class="treatment-meta">
+        <div class="meta-item"><div class="meta-label">Duration</div><div class="meta-value">30 min</div></div>
+        <div class="meta-item"><div class="meta-label">Coverage</div><div class="meta-value">Legs · Arms · Hips</div></div>
+      </div>
+      <a href="https://www.exhalewellness.us" target="_blank" class="treatment-cta">Book Compression →</a>
+    </div>
+  </div>
+</div>
+
+<!-- FITNESS POD -->
+<div id="fitness-pod" class="treatment-section">
+  <div class="treatment-grid reverse">
+    <div class="treatment-img-placeholder" style="background: linear-gradient(135deg, #7a6e50, #5a4e30);">💪</div>
+    <div class="treatment-content reveal">
+      <p class="section-label">Active Wellness</p>
+      <h2 class="treatment-title">Fitness<br><em>Pod</em></h2>
+      <p class="treatment-desc">Our fitness pod delivers whole-body vibration and targeted exercise support in a compact, efficient format. Whole-body vibration therapy stimulates muscle contractions up to 50 times per second, activating muscle fibers that traditional exercise often misses.</p>
+      <p class="treatment-desc">Perfect as a warm-up before massage, a standalone low-impact workout, or a complement to your existing fitness routine.</p>
+      <div class="benefits-list">
+        <div class="benefit-item"><div class="benefit-dot"></div>Increases muscle activation and strength</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Improves balance and proprioception</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Enhances circulation and lymphatic flow</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Low-impact — safe for all fitness levels</div>
+        <div class="benefit-item"><div class="benefit-dot"></div>Pairs beautifully with massage therapy</div>
+      </div>
+      <div class="treatment-meta">
+        <div class="meta-item"><div class="meta-label">Duration</div><div class="meta-value">15–30 min</div></div>
+        <div class="meta-item"><div class="meta-label">Impact</div><div class="meta-value">Low-impact · All levels</div></div>
+      </div>
+      <a href="https://www.exhalewellness.us" target="_blank" class="treatment-cta">Book Fitness Pod →</a>
+    </div>
+  </div>
+</div>
+
+<!-- BOOK STRIP -->
+<div class="book-strip">
+  <h3>Ready to <em>begin?</em></h3>
+  <p>Book any treatment online or call us — we'll help you find the perfect session.</p>
+  <div class="book-strip-actions">
+    <a href="https://www.exhalewellness.us" target="_blank" class="btn-gold-lg">Book Online</a>
+    <a href="tel:7273404603" class="btn-ghost">Call (727) 340-4603</a>
+  </div>
+</div>
+
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">Exhale Wellness</a>
+      <p>A wellness spa and tea room dedicated to your complete restoration. Licensed massage therapy, advanced wellness technology, and intentional rest.</p>
+      <span class="footer-tagline">Do something nice for yourself today</span>
+    </div>
+    <div class="footer-col">
+      <h5>Treatments</h5>
+      <ul>
+        <li><a href="treatments.html#massage">Massage Therapy</a></li>
+        <li><a href="treatments.html#hocatt">HOCATT Ozone</a></li>
+        <li><a href="treatments.html#cold-plunge">Cold Plunge</a></li>
+        <li><a href="treatments.html#float">Mineral Float</a></li>
+        <li><a href="treatments.html#red-light">Red Light Therapy</a></li>
+        <li><a href="treatments.html#sauna">Infrared Sauna</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Visit</h5>
+      <ul>
+        <li><a href="index.html#tea">Tea Room</a></li>
+        <li><a href="tel:7273404603">Gift Cards</a></li>
+        <li><a href="https://www.exhalewellness.us" target="_blank">Book Online</a></li>
+        <li><a href="index.html#about">About Keri</a></li>
+        <li><a href="index.html#testimonials">Reviews</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="tel:7273404603">(727) 340-4603</a></li>
+        <li><a href="https://maps.google.com/?q=3338+Tyrone+Blvd+N+St+Petersburg+FL" target="_blank">3338 Tyrone Blvd N, St. Pete FL</a></li>
+        <li><a href="https://www.instagram.com/exhalewellnessspaandtearoom/" target="_blank">Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Exhale Wellness Spa & Tea Room LLC — Saint Petersburg, FL</span>
+    <span>MM#42923</span>
+  </div>
+</footer>
+
+<script>
+  function scrollTo(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+</script>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
+  document.querySelectorAll('.mobile-menu a').forEach(a => a.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open')));
+  const reveals = document.querySelectorAll('.reveal');
+  new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 }).observe ? (() => {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.08 });
+    reveals.forEach(r => obs.observe(r));
+  })() : reveals.forEach(r => r.classList.add('visible'));
+</script>
+
+</body>
+</html>
